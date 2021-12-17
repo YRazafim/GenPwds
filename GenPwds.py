@@ -92,8 +92,14 @@ if __name__ == "__main__":
                 DIC += [word.replace ("\n", "")]
 
     # Mix words up to MAX_MIXED_LENGTH combinations
-    if (MIXED_WORDS == True):
-        DIC = mix_words (DIC)
+    l = len (DIC)
+    if (l > 1):
+        if (MIXED_WORDS == True):
+            if (MAX_MIXED_LENGTH < 2 or MAX_MIXED_LENGTH > l):
+                print ("[ERROR] MAX_MIXED_LENGTH must be >= 2 and <= len (DIC)\n")
+                exit()
+            else:
+                DIC = mix_words (DIC)
 
     # Apply case modifications
     DIC = modif_case (DIC)
