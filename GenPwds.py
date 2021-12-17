@@ -120,8 +120,7 @@ if __name__ == "__main__":
                 if (SPECIAL_CHARS):
                     for schar in SCHARS:
                         new_list += [tmp + schar]
-        if (not YEARS4 and not YEARS2):
-            if (SPECIAL_CHARS):
+        if (not YEARS4 and not YEARS2 and SPECIAL_CHARS):
                 for schar in SCHARS:
                     new_list += [word + schar]
     DIC = new_list
