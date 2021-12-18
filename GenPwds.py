@@ -7,7 +7,7 @@ import sys, itertools
 #################
 
 # Custom words to work with
-CUSTOM_WORDS = ["azerty", "admin", "root"]
+CUSTOM_WORDS = ["admin", "azerty"]
 
 # Wordlist path to work with
 WORDLIST = None
@@ -63,9 +63,9 @@ def modif_case (words):
 
 def leet_word (word):
     possibles = []
-    for l in word.lower():
-        ll = LEET_MAP.get (l, l)
-        possibles.append ((l,) if ll == l else (l, ll))
+    for l in word:
+        ll = LEET_MAP.get (l.lower(), l.lower())
+        possibles.append ((l,) if ll == l.lower() else (l, ll))
     return [''.join(t) for t in itertools.product (*possibles)]
 
 def leet (words):
@@ -93,10 +93,9 @@ if __name__ == "__main__":
 
     # Mix words up to MAX_MIXED_LENGTH combinations
     l = len (DIC)
-    if (l > 1):
-        if (MIXED_WORDS == True):
-            if (MAX_MIXED_LENGTH < 2 or MAX_MIXED_LENGTH > l):
-                print ("[ERROR] MAX_MIXED_LENGTH must be >= 2 and <= len (DIC)\n")
+    if (l > 1 and MIXED_WORDS and MAX_MIXED_LENGTH > 1):
+            if (MAX_MIXED_LENGTH > l):
+                print ("[ERROR] MAX_MIXED_LENGTH must be <= len (DIC)\n")
                 exit()
             else:
                 DIC = mix_words (DIC)
